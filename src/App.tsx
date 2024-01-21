@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { cn } from '@bem-react/classname'
+import Menu from './components/Menu/Menu';
+import Contacts from './components/Contacts/Contacts';
+import Chat from './components/Chat/Chat';
 
 function App() {
+  const appClass = cn('App');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={appClass()}>
+      <Menu></Menu>
+      <Contacts></Contacts>
+      <Chat></Chat>
     </div>
   );
 }

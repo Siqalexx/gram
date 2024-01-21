@@ -1,0 +1,73 @@
+$FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
+
+.Chat{
+    width: 100%;
+    max-width: 774px;
+    height: 830px;
+    
+    &-Header{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px 0px 13px 0px;
+        box-shadow: 1px 0px 4px 0px rgba(97, 97, 97, 0.20), 1px 0px 2px 0px rgba(97, 97, 97, 0.20);
+    }
+    &-Name{
+        margin: 0 0 7px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.4px;
+        font-family: $FONT_FAMILY;
+        color: #114475;
+    }
+    &-UserStatus{        
+        margin: 0;
+        color: #2580DB;
+        font-family: $FONT_FAMILY;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.4px;
+    }
+    &-Body{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: #E7ECF1;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        height: 706px;
+        overflow-y: scroll;
+        width: 100%;
+        max-width: 774px;
+    }
+    &-InputWrapper{
+        width: 100%;
+        max-width: 774px;
+        height: 54px;
+        padding: 12px 15px;
+        box-sizing: border-box;
+        background: #FFF;
+box-shadow: 0px 0px 4px 0px rgba(97, 97, 97, 0.20), 0px 0px 2px 0px rgba(97, 97, 97, 0.20);
+    }
+    &-Input{
+        width: 100%;
+        border-radius: 15px;
+        background: #E7ECF1;
+        color: #6D84A0;
+        font-family: $FONT_FAMILY;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.4px;
+        padding: 5px 16px 5px 16px;
+        box-sizing: border-box;
+        border: none;
+    }
+}

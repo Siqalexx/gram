@@ -1,0 +1,17 @@
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 400;
+	font-feature-settings: 'clig' off, 'liga' off;
+	font-display: swap;
+	src: url(".//Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-feature-settings: 'clig' off, 'liga' off;
+	font-weight: 700;
+	font-display: swap;
+	src: url("./Roboto-Bold.ttf") format("truetype");
+}

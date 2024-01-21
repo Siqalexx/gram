@@ -1,0 +1,101 @@
+$FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
+$NAME_COLOR:#114475;
+$TEXT_COLOR:rgba(17, 68, 117, 0.70);
+.Contact{
+    display: flex;
+    width: 100%;
+    max-width: 345px;
+    padding: 11px 14px;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.5;
+    }
+    &-AvatarContainer{
+        position: relative;
+    }
+    &-Avatar{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 14px;
+        position: relative;
+        object-fit: cover;
+        object-position: center;
+    }
+    &-Online{
+        background: #71CD50;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid #FFF;
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+    }
+    &-Info{
+        width: 100%;
+        max-width: 200px;
+    }
+    &-Name{
+        margin: 0;
+        color: $NAME_COLOR;
+        font-family: $FONT_FAMILY;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.4px;
+        margin-bottom: 6px;
+    }
+    &-LastMsg{
+        margin: 0;
+        font-family: $FONT_FAMILY;
+        overflow: hidden;
+        color: $TEXT_COLOR;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.4px;
+        width: 100%;
+        max-width: 200px;
+        white-space: nowrap;
+    }
+    &-TimeMsg{
+        margin: 0;
+        font-family: $FONT_FAMILY;
+        color:$TEXT_COLOR;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.4px;
+        margin-top: 6px;
+    }
+    &-TimeContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    &-MsgCounter{
+        display: flex;
+        margin-top: 7px;
+        justify-content: center;
+        align-items: center;
+        width: 22px;
+        height: 22px;
+        background: #267FDB;
+        border-radius: 50%;
+        box-shadow: 0px 3px 7px 0px rgba(17, 68, 117, 0.35);
+        color: #FFF;
+        font-family: $FONT_FAMILY;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 166.667% */
+        letter-spacing: 0.4px;
+    }
+}
