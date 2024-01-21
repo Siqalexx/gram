@@ -17,7 +17,10 @@ const Menu: React.FC<MenuProps> = observer(() => {
     const [activeButton, setActiveButton] = useState<ActiveButton>('Messages')
     const [isMenuExpanded, setMenuExpanded] = useState<boolean>(false)
     const { store } = useContext(Context)
-
+    const handlerSettings = () => {
+        setActiveButton('Settings')
+        alert('В разработке')
+    }
     return (
         <div className={menuClass({ expanded: isMenuExpanded })}>
            <div className={menuClass('Shell')}> 
@@ -35,9 +38,7 @@ const Menu: React.FC<MenuProps> = observer(() => {
                     {isMenuExpanded && <div className={menuClass('MessagesCounter', {expanded: isMenuExpanded})}>{store.getUnreadMessagesCount()}</div>}
                 </button>
 
-                <button onClick={()=>{
-                    setActiveButton('Settings')
-                }} className={menuClass('SettingsWrapper', {active: activeButton === 'Settings'}, menuClass('Wrapper', { expanded: isMenuExpanded }))}>
+                <button onClick={handlerSettings} className={menuClass('SettingsWrapper', {active: activeButton === 'Settings'}, menuClass('Wrapper', { expanded: isMenuExpanded }))}>
                     <div className={menuClass('Settings')}></div>
                     {isMenuExpanded && <div className={menuClass('Text')}>Настройки</div>}
                     
