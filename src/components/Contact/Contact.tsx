@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import "./contact.scss"
 import { cn } from '@bem-react/classname'
-import contactAvatar from '../../images/contact-avatar.svg'
 import { Iuser } from '../../store/store';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
@@ -37,7 +36,7 @@ const Contact: React.FC<ContactProps> = observer(({user}) => {
             }
         }, 5000); 
         return () => clearInterval(intervalId);
-      }, [store]);
+      }, [store, user.id]);
       
       const handleClick = ()=>{
         store.setChatId(user.id)

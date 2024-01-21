@@ -16,7 +16,7 @@ const Chat: React.FC<ChatProps> = observer(() => {
     useEffect(() => {
         // При заходе на чат пользователя отмечаем все его сообщения как прочитанные
         store.markAllMessagesAsRead(user?.id);
-      }, [store.chatId]);
+      }, [store, store.chatId, user?.id]);
     return (
         <div className={chatClass()}>
             <div className={chatClass('Header')}>
