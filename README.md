@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# Задание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. React с TypeScript
 
-## Available Scripts
+С использованием React и TypeScript реализовать экраны, представленные в [дизайне](https://www.figma.com/file/Shvpe6xPNvHD0FBqDMnWp6/Chat_test_krtech?type=design&node-id=115%3A335&mode=dev). Результат должен корректно отображаться на разных экранах (от 800px) и в разных браузерах (в приоритете chrome, firefox).
 
-In the project directory, you can run:
+## 2. Визуальное взаимодействие
 
-### `npm start`
+Все элементы должны иметь визуальное отображение взаимодействия (наведение и клик для пунктов меню, кнопок). Эффекты, отсутствующие в дизайне, можно реализовывать на ваше усмотрение. Меню должно разворачиваться и сворачиваться по нажатию нижней кнопки.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 3. Поиск пользователей
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Реализовать поиск пользователей через строку поиска на панели контактов.
 
-### `npm test`
+## 4. Видимость активности пользователей в чатах
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+"Пользователи" в списке случайным образом уходят в оффлайн, появляются онлайн, начинают писать сообщение. После этого увеличивается счетчик непрочитанных сообщений на элементе контакта и возле иконки списка чатов. При нажатии на контакт открывается чат с этим контактом и счетчик непрочитанных сообщений обнуляется. Счётчик возле списка сообщений уменьшается на количество "просмотренных" сообщений. Для стора использовать MobX.
 
-### `npm run build`
+## 5. GitHub
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Выложить готовый вариант на [GitHub](https://github.com/siqalexx/gram), создать билд на [GitHub Pages](https://siqalexx.github.io/gram/).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Требования к верстке
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Используем SCSS.
+- Классы в SCSS именуем в соответствии с БЭМ-методологией, используя [@bem-react/classname](https://www.npmjs.com/package/@bem-react/classname).
+- Все блоки и элементы с большой буквы, модификаторы и их значения с маленькой (смотреть пример по ссылке).
+- Все элементы должны быть в дереве, возможны исключения при необходимости.
+- В верстке использовать flex или grid.
 
-### `npm run eject`
+## Ограничения
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+При прохождении данного задания не нужно делать следующий функционал:
+- Изменение сообщений при переключении чата (везде можно использовать один и тот же список сообщений).
+- Возможность "отправлять" сообщения, чтобы они появлялись в списке сообщений.
