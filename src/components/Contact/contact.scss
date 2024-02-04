@@ -1,7 +1,8 @@
 $FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
-$NAME_COLOR:#114475;
-$TEXT_COLOR:rgba(17, 68, 117, 0.70);
-.Contact{
+$NAME_COLOR: #114475;
+$TEXT_COLOR: rgba(17, 68, 117, 0.7);
+
+.Contact {
     display: flex;
     width: 100%;
     max-width: 345px;
@@ -9,13 +10,13 @@ $TEXT_COLOR:rgba(17, 68, 117, 0.70);
     box-sizing: border-box;
     transition: opacity 0.3s ease;
     cursor: pointer;
-    &:hover{
+    &:hover {
         opacity: 0.5;
     }
-    &-AvatarContainer{
+    &-AvatarContainer {
         position: relative;
     }
-    &-Avatar{
+    &-Avatar {
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -24,21 +25,21 @@ $TEXT_COLOR:rgba(17, 68, 117, 0.70);
         object-fit: cover;
         object-position: center;
     }
-    &-Online{
-        background: #71CD50;
+    &-Online {
+        background: #71cd50;
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        border: 2px solid #FFF;
+        border: 2px solid #fff;
         position: absolute;
         bottom: 5px;
         right: 10px;
     }
-    &-Info{
+    &-Info {
         width: 100%;
         max-width: 200px;
     }
-    &-Name{
+    &-Name {
         margin: 0;
         color: $NAME_COLOR;
         font-family: $FONT_FAMILY;
@@ -49,12 +50,13 @@ $TEXT_COLOR:rgba(17, 68, 117, 0.70);
         letter-spacing: 0.4px;
         margin-bottom: 6px;
     }
-    &-LastMsg{
+    &-LastMsg {
         margin: 0;
         font-family: $FONT_FAMILY;
         overflow: hidden;
-        color: $TEXT_COLOR;
         text-overflow: ellipsis;
+        white-space: nowrap;
+        color: $TEXT_COLOR;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -62,12 +64,12 @@ $TEXT_COLOR:rgba(17, 68, 117, 0.70);
         letter-spacing: 0.4px;
         width: 100%;
         max-width: 200px;
-        white-space: nowrap;
+        display: inline-block;
     }
-    &-TimeMsg{
+    &-TimeMsg {
         margin: 0;
         font-family: $FONT_FAMILY;
-        color:$TEXT_COLOR;
+        color: $TEXT_COLOR;
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -75,27 +77,38 @@ $TEXT_COLOR:rgba(17, 68, 117, 0.70);
         letter-spacing: 0.4px;
         margin-top: 6px;
     }
-    &-TimeContainer{
+    &-TimeContainer {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        margin-left: auto;
     }
-    &-MsgCounter{
+    &-MsgCounter {
         display: flex;
         margin-top: 7px;
         justify-content: center;
         align-items: center;
         width: 22px;
         height: 22px;
-        background: #267FDB;
+        background: #267fdb;
         border-radius: 50%;
         box-shadow: 0px 3px 7px 0px rgba(17, 68, 117, 0.35);
-        color: #FFF;
+        color: #fff;
         font-family: $FONT_FAMILY;
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
         line-height: 20px; /* 166.667% */
         letter-spacing: 0.4px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .Contact {
+        &-Info {
+            &_expanded {
+                max-width: 150px;
+            }
+        }
     }
 }

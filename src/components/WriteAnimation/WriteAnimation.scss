@@ -1,0 +1,87 @@
+$FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
+$TEXT_COLOR: rgba(17, 68, 117, 0.7);
+
+.Animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-Text {
+        margin: 0;
+        font-family: $FONT_FAMILY;
+        color: $TEXT_COLOR;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.4px;
+        width: 100%;
+        max-width: 200px;
+    }
+    &-Dots {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        &_circle1 {
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: #2580db;
+            border-radius: 50%;
+            animation: dotAnimation1 1.3s infinite;
+        }
+        &_circle2 {
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #2580db;
+            border-radius: 50%;
+            animation: dotAnimation2 1.3s infinite;
+        }
+        &_circle3 {
+            display: block;
+            width: 2px;
+            height: 2px;
+            background-color: #2580db;
+            border-radius: 50%;
+            animation: dotAnimation3 1.3s infinite;
+            margin-right: 6px;
+        }
+    }
+}
+@keyframes dotAnimation1 {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    33% {
+        transform: scale(0.5);
+    }
+    66% {
+        transform: scale(0.3);
+    }
+}
+@keyframes dotAnimation2 {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    33% {
+        transform: scale(1.5);
+    }
+    66% {
+        transform: scale(0.8);
+    }
+}
+@keyframes dotAnimation3 {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    33% {
+        transform: scale(1);
+    }
+    66% {
+        transform: scale(3);
+    }
+}

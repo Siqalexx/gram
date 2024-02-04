@@ -1,21 +1,25 @@
 $FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
 
-.Contacts{
-    height: 830px;
+.Contacts {
+    height: 100vh;
     width: 100%;
     max-width: 345px;
     box-sizing: border-box;
-    &-List{
-        height: 760px;
-        overflow-y:scroll;
+    &-List {
+        max-height: calc(100vh - 69px);
+        overflow-y: scroll;
+        width: 100%;
+        max-width: 345px;
     }
-    &-SearchWrapper{
+    &-SearchWrapper {
         padding: 20px 14px;
-        box-shadow: 0px 2px 4px 0px rgba(97, 97, 97, 0.20), 0px 1px 2px 0px rgba(97, 97, 97, 0.20);
+        box-shadow:
+            0px 2px 4px 0px rgba(97, 97, 97, 0.2),
+            0px 1px 2px 0px rgba(97, 97, 97, 0.2);
     }
-    &-SearchBar{
+    &-SearchBar {
         border-radius: 15px;
-        background: #E7ECF1;
+        background: #e7ecf1;
         width: 100%;
         max-width: 320px;
         font-family: $FONT_FAMILY;

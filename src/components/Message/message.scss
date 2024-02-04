@@ -1,15 +1,18 @@
 $FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
 
-.Message{
+.Message {
     display: inline-flex;
     padding: 8px 16px 6px 16px;
     align-items: flex-start;
     gap: 10px;
     border-radius: 16px 16px 4px 4px;
-    background: #FFF;
-    box-shadow: 0px 2px 4px 0px rgba(28, 41, 61, 0.12), 0px 0px 1px 0px rgba(28, 41, 61, 0.20);
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow:
+        0px 2px 4px 0px rgba(28, 41, 61, 0.12),
+        0px 0px 1px 0px rgba(28, 41, 61, 0.2);
     margin-bottom: 8px;
-    &-Body{
+    &-Body {
         max-width: 400px;
         white-space: pre-wrap;
         color: #114475;
@@ -21,8 +24,8 @@ $FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
         letter-spacing: 0.4px;
         margin: 0;
     }
-    &-Time{
-        color: #798CA5;
+    &-Time {
+        color: #798ca5;
         font-family: $FONT_FAMILY;
         font-size: 12px;
         font-style: normal;
@@ -30,6 +33,14 @@ $FONT_FAMILY: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
         line-height: normal;
         letter-spacing: 0.4px;
         margin: 0;
-       align-self: flex-end;
+        align-self: flex-end;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .Message {
+        &_expanded {
+            width: 180px;
+        }
     }
 }

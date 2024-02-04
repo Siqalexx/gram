@@ -1,52 +1,71 @@
-import React, { useContext, useState } from 'react';
-import { cn } from '@bem-react/classname'
-import avatarProfile from '../../images/Avatar_small.svg'
-import './menu.scss'
+import React, { FC, useContext, useState } from 'react';
+import { cn } from '@bem-react/classname';
+import avatarProfile from '../../images/avatars/avatarProfile.png';
+import './menu.scss';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
+import MenuBtnMessages from '../MenuBtnMessages/MenuBtnMessages';
+import MenuBtnSettings from '../MenuBtnSettings/MenuBtnSettings';
+import MenuBtnExpand from '../MenuBtnExpand/MenuBtnExpand';
 
 type ActiveButton = 'Messages' | 'Settings';
 
-interface MenuProps {
-    
-}
-
-const Menu: React.FC<MenuProps> = observer(() => {
-
+const Menu: FC = observer(() => {
+    const [activeButton, setActiveButton] = useState<ActiveButton>('Messages');
     const menuClass = cn('Menu');
-    const [activeButton, setActiveButton] = useState<ActiveButton>('Messages')
-    const [isMenuExpanded, setMenuExpanded] = useState<boolean>(false)
-    const { store } = useContext(Context)
+    const { store } = useContext(Context);
+    const wrapperStyles = menuClass('Wrapper', {
+        expanded: store.isMenuExpanded,
+    });
     const handlerSettings = () => {
-        setActiveButton('Settings')
-        alert('В разработке')
-    }
-    return (
-        <div className={menuClass({ expanded: isMenuExpanded })}>
-           <div className={menuClass('Shell')}> 
-                <img src={avatarProfile} alt='Аватар пользователя' className={menuClass('Avatar', { expanded: isMenuExpanded })}></img>
-                {isMenuExpanded && <div className={menuClass('Name')}>Ivan Ivanov</div>}
-                {isMenuExpanded && <div className={menuClass('Status')}><span className={menuClass('StatusBar')}></span>Online</div>}
-                
-                <button onClick={()=>{
-                    setActiveButton('Messages')
-                }} className={menuClass('MessagesWrapper',{active: activeButton === 'Messages'}, menuClass('Wrapper', { expanded: isMenuExpanded }))}> 
-                    <div className={menuClass('Messages')}>
-                        {!isMenuExpanded && <div className={menuClass('MessagesCounter')}>{store.getUnreadMessagesCount()}</div>}
-                    </div>
-                    {isMenuExpanded && <div className={menuClass('Text')}>Диалоги</div>}
-                    {isMenuExpanded && <div className={menuClass('MessagesCounter', {expanded: isMenuExpanded})}>{store.getUnreadMessagesCount()}</div>}
-                </button>
+        setActiveButton('Settings');
+        alert('В разработке');
+    };
+    const handlerMessages = () => {
+        setActiveButton('Messages');
+    };
 
-                <button onClick={handlerSettings} className={menuClass('SettingsWrapper', {active: activeButton === 'Settings'}, menuClass('Wrapper', { expanded: isMenuExpanded }))}>
-                    <div className={menuClass('Settings')}></div>
-                    {isMenuExpanded && <div className={menuClass('Text')}>Настройки</div>}
-                    
-                </button>
+    return (
+        <div className={menuClass({ expanded: store.isMenuExpanded })}>
+            <div className={menuClass('Shell')}>
+                <img
+                    src={avatarProfile}
+                    alt="Аватар пользователя"
+                    className={menuClass('Avatar', {
+                        expanded: store.isMenuExpanded,
+                    })}
+                ></img>
+                {store.isMenuExpanded && (
+                    <div className={menuClass('Name')}>Ivan Ivanov</div>
+                )}
+                {store.isMenuExpanded && (
+                    <div className={menuClass('Status')}>
+                        <span className={menuClass('StatusBar')}></span>Online
+                    </div>
+                )}
+
+                <MenuBtnMessages
+                    handleClick={handlerMessages}
+                    menuClass={menuClass}
+                    isMenuExpanded={store.isMenuExpanded}
+                    unreadMessagesCount={store.unreadMessagesCount}
+                    wrapperStyles={wrapperStyles}
+                    activeButton={activeButton}
+                />
+
+                <MenuBtnSettings
+                    handleClick={handlerSettings}
+                    menuClass={menuClass}
+                    isMenuExpanded={store.isMenuExpanded}
+                    wrapperStyles={wrapperStyles}
+                    activeButton={activeButton}
+                />
             </div>
-            <button onClick={()=>setMenuExpanded(prevState => !prevState)} className={menuClass('ButtonOpenWrapper',{ expanded: isMenuExpanded })}>
-                <div className={menuClass('ButtonOpen',{ expanded: isMenuExpanded })}></div>
-            </button>
+            <MenuBtnExpand
+                handleClick={() => store.changeMenuExpanded()}
+                menuClass={menuClass}
+                isMenuExpanded={store.isMenuExpanded}
+            />
         </div>
     );
 });
