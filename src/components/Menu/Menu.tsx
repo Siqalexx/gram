@@ -17,11 +17,11 @@ const Menu: FC = observer(() => {
     const wrapperStyles = menuClass('Wrapper', {
         expanded: store.isMenuExpanded,
     });
-    const handlerSettings = () => {
+    const handlerSettings = (): void => {
         setActiveButton('Settings');
         alert('В разработке');
     };
-    const handlerMessages = () => {
+    const handlerMessages = (): void => {
         setActiveButton('Messages');
     };
 
@@ -36,19 +36,18 @@ const Menu: FC = observer(() => {
                     })}
                 ></img>
                 {store.isMenuExpanded && (
-                    <div className={menuClass('Name')}>Ivan Ivanov</div>
-                )}
-                {store.isMenuExpanded && (
-                    <div className={menuClass('Status')}>
-                        <span className={menuClass('StatusBar')}></span>Online
-                    </div>
+                    <>
+                        <div className={menuClass('Name')}>Ivan Ivanov</div>
+                        <div className={menuClass('Status')}>
+                            <span className={menuClass('StatusBar')}></span>
+                            Online
+                        </div>
+                    </>
                 )}
 
                 <MenuBtnMessages
                     handleClick={handlerMessages}
                     menuClass={menuClass}
-                    isMenuExpanded={store.isMenuExpanded}
-                    unreadMessagesCount={store.unreadMessagesCount}
                     wrapperStyles={wrapperStyles}
                     activeButton={activeButton}
                 />
@@ -56,7 +55,6 @@ const Menu: FC = observer(() => {
                 <MenuBtnSettings
                     handleClick={handlerSettings}
                     menuClass={menuClass}
-                    isMenuExpanded={store.isMenuExpanded}
                     wrapperStyles={wrapperStyles}
                     activeButton={activeButton}
                 />
@@ -64,7 +62,6 @@ const Menu: FC = observer(() => {
             <MenuBtnExpand
                 handleClick={() => store.changeMenuExpanded()}
                 menuClass={menuClass}
-                isMenuExpanded={store.isMenuExpanded}
             />
         </div>
     );

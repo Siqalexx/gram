@@ -179,21 +179,21 @@ export default class Store {
         return this.users.find((user) => user.id === id);
     }
     setUserOnline(idUser: number, status: boolean) {
-        const userIndex = this.users.findIndex((user) => user.id === idUser);
-
-        if (userIndex !== -1) {
-            this.users[userIndex].online = status;
-        }
+        this.users.forEach((user) => {
+            if (user.id === idUser) {
+                user.online = status;
+            }
+        });
     }
     changeMenuExpanded() {
         this.isMenuExpanded = !this.isMenuExpanded;
     }
     setUserTyping(idUser: number, typing: boolean) {
-        const userIndex = this.users.findIndex((user) => user.id === idUser);
-
-        if (userIndex !== -1) {
-            this.users[userIndex].isTyping = typing;
-        }
+        this.users.forEach((user) => {
+            if (user.id === idUser) {
+                user.isTyping = typing;
+            }
+        });
     }
 
     setNewMessage(idUser: number, text: string) {
@@ -201,45 +201,36 @@ export default class Store {
         const hours = date.getHours();
         const minutes = date.getMinutes();
         const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-        this.users = this.users.map((user) => {
-            if (user.id === idUser) {
-                return {
-                    ...user,
-                    unreadMessagesCount:
-                        this.chatId === idUser
-                            ? user.unreadMessagesCount
-                            : user.unreadMessagesCount + 1,
-                    messages: [
-                        ...user.messages,
-                        {
-                            id: Math.random(),
-                            text,
-                            time: formattedTime,
-                            isReaded: this.chatId === idUser ? true : false,
-                        },
-                    ],
-                };
-            }
-            return user;
-        });
-    }
-    markAllMessagesAsRead(idUser: number | undefined) {
-        this.users = this.users.map((user) => {
-            if (user.id === idUser) {
-                const updatedMessages = user.messages.map((message) => ({
-                    ...message,
-                    isReaded: true,
-                }));
 
-                return {
-                    ...user,
-                    unreadMessagesCount: 0,
-                    messages: updatedMessages,
-                };
+        this.users.forEach((user) => {
+            if (user.id === idUser) {
+                user.unreadMessagesCount =
+                    this.chatId === idUser
+                        ? user.unreadMessagesCount
+                        : user.unreadMessagesCount + 1;
+
+                user.messages.push({
+                    id: Math.random(),
+                    text,
+                    time: formattedTime,
+                    isReaded: this.chatId === idUser,
+                });
             }
-            return user;
         });
     }
+
+    markAllMessagesAsRead(idUser: number | undefined) {
+        this.users.forEach((user) => {
+            if (user.id === idUser) {
+                user.unreadMessagesCount = 0;
+
+                user.messages.forEach((message) => {
+                    message.isReaded = true;
+                });
+            }
+        });
+    }
+
     getRandomMessage(): string {
         const randomIndex = Math.floor(
             Math.random() * this.frontendMessages.length,

@@ -1,51 +1,49 @@
 import { ClassNameFormatter } from '@bem-react/classname';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
 
 interface MenuBtnMessagesProps {
     handleClick: () => void;
     menuClass: ClassNameFormatter;
-    isMenuExpanded: boolean;
-    unreadMessagesCount: number;
     wrapperStyles: string;
     activeButton: 'Messages' | 'Settings';
 }
 
-const MenuBtnMessages: FC<MenuBtnMessagesProps> = ({
-    handleClick,
-    menuClass,
-    isMenuExpanded,
-    unreadMessagesCount,
-    wrapperStyles,
-    activeButton,
-}) => {
+const MenuBtnMessages: FC<MenuBtnMessagesProps> = observer((props) => {
+    const { store } = useContext(Context);
+
     return (
         <button
-            onClick={handleClick}
-            className={menuClass(
+            onClick={props.handleClick}
+            className={props.menuClass(
                 'MessagesWrapper',
-                { active: activeButton === 'Messages' },
-                wrapperStyles,
+                { active: props.activeButton === 'Messages' },
+                props.wrapperStyles,
             )}
         >
-            <div className={menuClass('Messages')}>
-                {!isMenuExpanded && (
-                    <div className={menuClass('MessagesCounter')}>
-                        {unreadMessagesCount}
-                    </div>
+            <span className={props.menuClass('Messages')}>
+                {!store.isMenuExpanded && (
+                    <span className={props.menuClass('MessagesCounter')}>
+                        {store.unreadMessagesCount}
+                    </span>
                 )}
-            </div>
-            {isMenuExpanded && <div className={menuClass('Text')}>Диалоги</div>}
-            {isMenuExpanded && (
-                <div
-                    className={menuClass('MessagesCounter', {
-                        expanded: isMenuExpanded,
-                    })}
-                >
-                    {unreadMessagesCount}
-                </div>
+            </span>
+
+            {store.isMenuExpanded && (
+                <>
+                    <span className={props.menuClass('Text')}>Диалоги</span>
+                    <span
+                        className={props.menuClass('MessagesCounter', {
+                            expanded: store.isMenuExpanded,
+                        })}
+                    >
+                        {store.unreadMessagesCount}
+                    </span>
+                </>
             )}
         </button>
     );
-};
+});
 
 export default MenuBtnMessages;

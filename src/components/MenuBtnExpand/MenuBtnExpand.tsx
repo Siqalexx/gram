@@ -1,31 +1,30 @@
 import { ClassNameFormatter } from '@bem-react/classname';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
 
 interface MenuBtnMessagesProps {
     handleClick: () => void;
     menuClass: ClassNameFormatter;
-    isMenuExpanded: boolean;
 }
 
-const MenuBtnExpand: FC<MenuBtnMessagesProps> = ({
-    handleClick,
-    menuClass,
-    isMenuExpanded,
-}) => {
+const MenuBtnExpand: FC<MenuBtnMessagesProps> = observer((props) => {
+    const { store } = useContext(Context);
+
     return (
         <button
-            onClick={handleClick}
-            className={menuClass('ButtonOpenWrapper', {
-                expanded: isMenuExpanded,
+            onClick={props.handleClick}
+            className={props.menuClass('ButtonOpenWrapper', {
+                expanded: store.isMenuExpanded,
             })}
         >
-            <div
-                className={menuClass('ButtonOpen', {
-                    expanded: isMenuExpanded,
+            <span
+                className={props.menuClass('ButtonOpen', {
+                    expanded: store.isMenuExpanded,
                 })}
-            ></div>
+            ></span>
         </button>
     );
-};
+});
 
 export default MenuBtnExpand;

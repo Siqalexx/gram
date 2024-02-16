@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, ReactElement, useContext, useEffect } from 'react';
 import { cn } from '@bem-react/classname';
 import './chat.scss';
 import Message from '../Message/Message';
@@ -10,30 +10,26 @@ import WriteAnimation from '../WriteAnimation/WriteAnimation';
 const Chat: FC = observer(() => {
     const chatClass = cn('Chat');
     const { store } = useContext(Context);
-    const user: Iuser | undefined = store.getUser(store.chatId);
+    const user: Iuser = store.getUser(store.chatId)!;
     useEffect(() => {
         // При заходе на чат пользователя отмечаем все его сообщения как прочитанные
         store.markAllMessagesAsRead(user?.id);
     }, [store, store.chatId, user?.id]);
-    const getUserStatus = () => {
-        if (!user) {
-            return <p className={chatClass('UserStatus')}>Offline</p>;
+    const getUserTypingStatus = (): ReactElement => {
+        if (user.isTyping) {
+            return <WriteAnimation text="Печатает" />;
         }
-        const { online, isTyping } = user;
-        if (online) {
-            return isTyping ? (
-                <WriteAnimation text="Печатает" />
-            ) : (
-                <p className={chatClass('UserStatus')}>Online</p>
-            );
-        }
-        return <p className={chatClass('UserStatus')}>Offline</p>;
+        return <p className={chatClass('UserStatus')}>Online</p>;
     };
     return (
         <div className={chatClass()}>
             <div className={chatClass('Header')}>
                 <h3 className={chatClass('Name')}>{user?.name}</h3>
-                {getUserStatus()}
+                {user.online ? (
+                    getUserTypingStatus()
+                ) : (
+                    <p className={chatClass('UserStatus')}>Offline</p>
+                )}
             </div>
             <div className={chatClass('Body')}>
                 {user?.messages.map((msg) => {

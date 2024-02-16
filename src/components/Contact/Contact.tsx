@@ -39,7 +39,7 @@ const Contact: FC<ContactProps> = observer(({ user }) => {
         return () => clearInterval(intervalId);
     }, [store, user.id]);
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         store.setChatId(user.id);
     };
 
