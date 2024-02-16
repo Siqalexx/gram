@@ -4,16 +4,20 @@ import './chat.scss';
 import Message from '../Message/Message';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import { Iuser } from '../../store/store';
+import { Iuser } from '../../store/user.store';
 import WriteAnimation from '../WriteAnimation/WriteAnimation';
+import { Imessage } from '../../store/message.store';
 
 const Chat: FC = observer(() => {
     const chatClass = cn('Chat');
     const { store } = useContext(Context);
-    const user: Iuser = store.getUser(store.chatId)!;
+    const user: Iuser = store.userStore.getUser(store.chatId)!;
+    const messages: Imessage[] = store.messageStore.getUserMessages(
+        store.chatId,
+    )!;
     useEffect(() => {
         // При заходе на чат пользователя отмечаем все его сообщения как прочитанные
-        store.markAllMessagesAsRead(user?.id);
+        store.messageStore.markAllMessagesAsRead(user?.id);
     }, [store, store.chatId, user?.id]);
     const getUserTypingStatus = (): ReactElement => {
         if (user.isTyping) {
@@ -32,14 +36,8 @@ const Chat: FC = observer(() => {
                 )}
             </div>
             <div className={chatClass('Body')}>
-                {user?.messages.map((msg) => {
-                    return (
-                        <Message
-                            isMenuExpanded={store.isMenuExpanded}
-                            key={msg.id}
-                            message={msg}
-                        />
-                    );
+                {messages.map((msg) => {
+                    return <Message key={msg.id} message={msg} />;
                 })}
             </div>
             <div>

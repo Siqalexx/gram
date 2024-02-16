@@ -4,7 +4,7 @@ import { cn } from '@bem-react/classname';
 import Contact from '../Contact/Contact';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import { Iuser } from '../../store/store';
+import { Iuser } from '../../store/user.store';
 
 const Contacts: FC = observer(() => {
     const { store } = useContext(Context);
@@ -15,11 +15,11 @@ const Contacts: FC = observer(() => {
         setSearch(event.target.value);
     };
     useEffect(() => {
-        const results = store.users.filter((user) =>
+        const results = store.userStore.users.filter((user) =>
             user.name.toLowerCase().includes(search.toLowerCase()),
         );
         setSearchResults(results);
-    }, [search, store.users]);
+    }, [search, store.userStore.users]);
     return (
         <div className={contactsClass()}>
             <div className={contactsClass('SearchWrapper')}>

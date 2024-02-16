@@ -25,7 +25,7 @@ const MenuBtnMessages: FC<MenuBtnMessagesProps> = observer((props) => {
             <span className={props.menuClass('Messages')}>
                 {!store.isMenuExpanded && (
                     <span className={props.menuClass('MessagesCounter')}>
-                        {store.unreadMessagesCount}
+                        {store.userStore.unreadMessagesCount}
                     </span>
                 )}
             </span>
@@ -38,7 +38,7 @@ const MenuBtnMessages: FC<MenuBtnMessagesProps> = observer((props) => {
                             expanded: store.isMenuExpanded,
                         })}
                     >
-                        {store.unreadMessagesCount}
+                        {store.userStore.unreadMessagesCount}
                     </span>
                 </>
             )}
