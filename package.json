@@ -2,7 +2,7 @@
     "name": "gram",
     "version": "0.1.0",
     "private": true,
-    "homepage": "http://Siqalexx.github.io/gram",
+    "homepage": "https://siqalexx.github.io/gram/",
     "dependencies": {
         "@bem-react/classname": "^1.6.0",
         "@testing-library/jest-dom": "^5.17.0",
